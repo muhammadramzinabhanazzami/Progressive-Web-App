@@ -1,6 +1,8 @@
 {
-  "short_name": "GadgetLens",
+  "id": "/",
   "name": "GadgetLens Store",
+  "short_name": "GadgetLens",
+  "start_url": "/",
   "icons": [
     {
       "src": "logo192.png",
