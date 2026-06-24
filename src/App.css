@@ -1,0 +1,253 @@
+/* =========================================================
+   1. SISTEM WARNA (LIGHT & DARK MODE)
+   ========================================================= */
+:root {
+  /* Light Mode (Default) */
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --primary-color: #2563eb;
+  --border-color: #e2e8f0;
+  --image-bg: #f1f5f9;
+  --nav-bg: #ffffff;
+  --shadow-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme='dark'] {
+  /* Dark Mode */
+  --bg-color: #0f172a;
+  --card-bg: #1e293b;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --primary-color: #3b82f6;
+  --border-color: #334155;
+  --image-bg: #334155;
+  --nav-bg: #1e293b;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: #cbd5e1; /* Latar luar emulator hp */
+  transition: background-color 0.3s ease;
+}
+
+/* =========================================================
+   2. LAYOUT DASAR MOBILE
+   ========================================================= */
+.app-container {
+  max-width: 480px;
+  margin: 0 auto;
+  background-color: var(--bg-color);
+  min-height: 100vh;
+  position: relative;
+  box-shadow: 0 0 25px rgba(0,0,0,0.2);
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s ease;
+}
+
+/* Teks Helper */
+.text-main { color: var(--text-main); margin-bottom: 5px; }
+.text-muted { color: var(--text-muted); font-size: 0.9rem; }
+
+/* --- SPLASH SCREEN --- */
+.splash-screen {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeOut 0.5s ease-in-out 2s forwards;
+}
+
+.splash-logo {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 15px;
+  border-radius: 20px; /* Opsional jika PNG Anda kotak */
+  animation: pulse 1.5s infinite alternate;
+}
+
+.splash-title { color: var(--text-main); font-size: 1.5rem; letter-spacing: 1px;}
+
+@keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
+@keyframes pulse { from { transform: scale(1); } to { transform: scale(1.08); } }
+
+/* --- HEADER & THEME TOGGLE --- */
+.app-header {
+  background: var(--nav-bg);
+  padding: 15px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.3s ease;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-content h3 { margin: 0; font-size: 1.1rem; color: var(--text-main); }
+
+.theme-toggle {
+  background: none;
+  border: none;
+  color: var(--text-main);
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- MAIN CONTENT & CATALOG --- */
+.app-content {
+  flex: 1;
+  padding: 20px 15px 90px 15px;
+  overflow-y: auto;
+}
+
+.tab-content { text-align: center; padding: 40px 20px; }
+.profile-icon-large svg { width: 80px; height: 80px; color: var(--text-muted); margin-bottom: 15px; }
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.product-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.product-card:active { transform: scale(0.97); }
+
+.product-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--image-bg);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.placeholder-text {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.product-card h4 { margin: 0 0 5px 0; font-size: 0.9rem; font-weight: 600; line-height: 1.3;}
+.product-card .price { color: var(--primary-color); font-weight: 700; margin: auto 0 12px 0; font-size: 0.85rem;}
+
+.btn-buy {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  background: var(--primary-color);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* --- BOTTOM NAVIGATION --- */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 480px;
+  background: var(--nav-bg);
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0;
+  border-top: 1px solid var(--border-color);
+  z-index: 100;
+  transition: background-color 0.3s ease;
+}
+
+.nav-item {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.nav-item .icon { width: 24px; height: 24px; }
+.nav-item .label { font-size: 0.7rem; font-weight: 500; }
+
+.nav-item.active { color: var(--primary-color); }
+.nav-item.active .icon { transform: translateY(-2px); transition: transform 0.2s; }
+
+/* =========================================================
+   3. RESPONSIVE DESIGN (DESKTOP / TABLET)
+   ========================================================= */
+@media (min-width: 768px) {
+  body { background-color: var(--bg-color); }
+  .app-container { max-width: 1200px; flex-direction: row; box-shadow: none; }
+  
+  /* --- KODE YANG DIUBAH MULAI DARI SINI --- */
+  .app-header { 
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: calc(100% - 100px); /* Menyesuaikan lebar di luar sidebar */
+    background: var(--bg-color);
+    border-bottom: none;
+    padding: 30px 40px;
+  }
+  .app-header h3 { display: none; } /* Sembunyikan teks judul agar rapi */
+  .header-content { justify-content: flex-end; } /* Dorong tombol ke kanan */
+  /* --- BATAS KODE YANG DIUBAH --- */
+  
+  .app-content { padding: 80px 40px 40px 40px; margin-left: 100px; width: 100%; }
+  .catalog-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  
+  .bottom-nav {
+    top: 0; left: 0; width: 100px; height: 100vh;
+    flex-direction: column; justify-content: flex-start;
+    padding-top: 40px; border-top: none; border-right: 1px solid var(--border-color);
+    gap: 30px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .catalog-grid { grid-template-columns: repeat(4, 1fr); }
+  
+  /* --- KODE TAMBAHAN UNTUK HEADER DESKTOP --- */
+  .app-header { width: calc(100% - 250px); }
+  /* --- BATAS KODE TAMBAHAN --- */
+  
+  .app-content { margin-left: 250px; }
+  .bottom-nav { width: 250px; align-items: flex-start; padding-left: 40px; }
+  .nav-item { flex-direction: row; gap: 15px; }
+  .nav-item .label { font-size: 1rem; }
+}
